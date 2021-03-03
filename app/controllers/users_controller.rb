@@ -5,8 +5,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
-      redirect_to questions_path, notice: "User Created!" 
+      redirect_to new_user_score_board_path(@user)
     else
       render :new
     end
