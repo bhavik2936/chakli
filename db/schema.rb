@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_092518) do
+ActiveRecord::Schema.define(version: 2021_03_03_115058) do
 
   create_table "questions", force: :cascade do |t|
     t.text "statement"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2021_03_03_092518) do
   end
 
   create_table "score_boards", force: :cascade do |t|
-    t.integer "score"
-    t.integer "strike"
+    t.integer "score", default: 0
+    t.integer "strike", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
