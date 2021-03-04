@@ -11,7 +11,7 @@ class ScoreBoardsController < ApplicationController
 
   def create
     if @score_board.save
-      redirect_to questions_path
+      redirect_to user_questions_path
     else
       redirect_to :root
     end
