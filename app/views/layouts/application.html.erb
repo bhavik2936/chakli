@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <% unless @user.name.nil? %>
+      <%= render 'layouts/user_header' %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

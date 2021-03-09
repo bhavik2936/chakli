@@ -15,7 +15,7 @@ Question.create([
   { statement: 'પોપટ ઉડે?', answer: true },
   { statement: 'ગાય ઉડે?', answer: false },
   { statement: 'સિંહ ઉડે?', answer: false },
-  { statement: 'ભા​વિક ઉડે?', answer: false },
+  { statement: 'ભાવિક ઉડે?', answer: false },
   { statement: 'ટાબરીયું ઉડે?', answer: false },
   { statement: 'મોર ઉડે?', answer: true },
   { statement: 'નિશિત ઉડે?', answer: false },
