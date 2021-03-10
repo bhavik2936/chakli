@@ -27,7 +27,6 @@ gem 'jbuilder', '~> 2.7'
 
 # Forms made easy!
 gem 'simple_form', '~> 5.1'
-gem 'bootstrap', '~> 4.6'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
