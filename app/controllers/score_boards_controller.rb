@@ -1,7 +1,6 @@
 class ScoreBoardsController < ApplicationController
 
   def index
-
   end
 
   def new

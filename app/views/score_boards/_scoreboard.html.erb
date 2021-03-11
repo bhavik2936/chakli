@@ -4,6 +4,7 @@
     <tr>
       <th>Name</th>
       <th>Score</th>
+      <th>Duration</th>
     </tr>
   </thead>
   <tbody>
@@ -11,6 +12,7 @@
     <tr>
       <td> <%= score.user.name %> </td>
       <td><%= score.score %></td>
+      <td><%= score.created_at - score.user.created_at %></td>
     </tr>
     <% end %>
   </tbody>
