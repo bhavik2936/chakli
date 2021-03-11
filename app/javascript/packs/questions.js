@@ -24,17 +24,11 @@ jQuery(function() {
       updateScore();
     } else if (e.currentTarget.id === "na-ude" && questionList[questionPointer]['answer'] === false) {
       updateScore();
-    } else if (userStrike !== 2 ) {
-      updateStrike();
     } else {
-      finishGame();
+      updateStrike();
     }
 
-    if (gameOver) {
-      finishGame();
-    } else {
-      changeQuestion();
-    }
+    changeQuestion();
   });
 });
 
@@ -48,12 +42,12 @@ function loadFirstQuestion() {
 }
 
 function changeQuestion() {
+  if (questionPointer === questionList.length-1) {
+    finishGame();
+  }
+
   var newQuestion = questionList[++questionPointer]['statement'];
   $('#question').empty().append(newQuestion);
-
-  if (questionPointer === questionList.length-1) {
-    gameOver = true;
-  }
 }
 
 function updateScore() {
@@ -64,6 +58,10 @@ function updateScore() {
 function updateStrike() {
   userStrike += 1;
   $('#strike-stat').empty().append(userStrike);
+
+  if (userStrike == 3) {
+    finishGame();
+  }
 }
 
 function finishGame() {
@@ -83,7 +81,7 @@ function finishGame() {
     data: userScoreBoard
   }).done(function(response) {
 
-    alert("Thanks for playing! Your Score: " + userScore);
+    alert("Thanks for playing! Your Score: " + userScoreBoard.score_board.score);
     window.location.href = "/";
   }).fail(function(jqXHR, textstatus, errorThrown) {
 
