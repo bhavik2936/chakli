@@ -38,6 +38,10 @@ jQuery(function() {
   });
 });
 
+function getUserId() {
+  return window.location.pathname.split("/")[2];
+}
+
 function loadFirstQuestion() {
   var firstQuestion = questionList[questionPointer]['statement'];
   $('#question').empty().append(firstQuestion);
@@ -63,6 +67,27 @@ function updateStrike() {
 }
 
 function finishGame() {
-  alert("Thanks for playing! Your Score: " + userScore);
-  window.location.href = "/";
+  newScoreBoardUrl = "/users/" + getUserId() + "/score_boards";
+  userScoreBoard = {
+    score_board: {
+      user_id: getUserId(),
+      score: $('#score-stat')[0].innerHTML,
+      strike: $('#strike-stat')[0].innerHTML,
+    }
+  };
+
+  $.ajax({
+    type: "POST",
+    url: newScoreBoardUrl,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    data: userScoreBoard
+  }).done(function(response) {
+
+    alert("Thanks for playing! Your Score: " + userScore);
+    window.location.href = "/";
+  }).fail(function(jqXHR, textstatus, errorThrown) {
+
+    alert("Score cannot be saved at this moment!");
+  });
+
 }

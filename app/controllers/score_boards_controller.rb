@@ -6,14 +6,17 @@ class ScoreBoardsController < ApplicationController
 
   def new
     @score_board = ScoreBoard.new(user_id: params[:user_id])
-    create
   end
 
   def create
-    if @score_board.save
-      redirect_to user_questions_path
-    else
-      redirect_to :root
+    @score_board = ScoreBoard.new(score_board_params)
+
+    respond_to do |format|
+      if @score_board.save
+        format.js
+      else
+        format.js { render js: "questions", status: 400 }
+      end
     end
   end
   
