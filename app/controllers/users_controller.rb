@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     # @users = User.all
-    @score = ScoreBoard.all.order("score DESC")
+    @score = ScoreBoard.includes(:user).all.order("score DESC")
   end
 
   def create
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_questions_path(@user)
     else
-      render :new
+      redirect_to root_path
     end
   end
 
