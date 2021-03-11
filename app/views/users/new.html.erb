@@ -1,5 +1,11 @@
-<br>
+<%= render 'users/home_header' %>
+
 <%= simple_form_for @user do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
+    <div class="d-flex align-items-center justify-content-center">
+      <%= f.input :name, class: "form-control", label: false, placeholder: "Name" %> &nbsp;
+      <%= f.button :submit, "Start Game!!", class: "btn btn-primary" %>
+    </div>
+<br>
 <% end %>
+
+<%= render 'score_boards/scoreboard' %>

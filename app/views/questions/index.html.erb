@@ -1,3 +1,7 @@
+<% unless @users.name.nil? %>
+  <%= render 'layouts/user_header' %>
+<% end %>
+
 <%= render 'score_boards/stats'%>
 
 <div class="container text-center">

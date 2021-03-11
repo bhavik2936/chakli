@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    # @users = User.all
+    @score = ScoreBoard.all.order("score DESC")
   end
 
   def create

@@ -1,0 +1,18 @@
+<div class="container">
+<table id="scoreboard" class="table table-dark table-bordered text-center" style="width:100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @score.each do |score| %>
+    <tr>
+      <td> <%= score.user.name %> </td>
+      <td><%= score.score %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
