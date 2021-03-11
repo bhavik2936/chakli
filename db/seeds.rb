@@ -30,5 +30,8 @@ Question.create([
   { statement: 'ચશ્મા ઉડે?', answer: false },
   { statement: 'કાગડો ઉડે?', answer: true },
   { statement: 'પાંદડુ પડે?', answer: true },
-  { statement: 'કોરોના ફેલાય?', answer: true }
+  { statement: 'કોરોના ફેલાય?', answer: true },
+  { statement: 'ડેટાબેઝ ઉડે?', answer: true },
+  { statement: 'આયુષી બોલે?', answer: true },
+  { statement: 'જીમીત બોલે?', answer: false }
 ])
