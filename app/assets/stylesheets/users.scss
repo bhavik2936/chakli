@@ -1,15 +1,22 @@
+@import "application";
+
 .btn-game {
-  background-color: #0ca88e;
-  border-color: #0ca88e;
+  color: white;
+  background-color: $main-color-dark;
+  border-color: $main-color-dark;
+}
+
+.btn-game:hover {
+  background-color: $main-color-light;
 }
 
 .table-scoreboard {
   thead {
     color: white !important;
-    background-color: #0ca88e !important;
+    background-color: $main-color-dark !important;
   }
 
   tbody tr:nth-child(even) {
-    background-color: #d1f2eb !important;
+    background-color: $main-color-light !important;
   }
 }
