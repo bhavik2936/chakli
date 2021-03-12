@@ -1,0 +1,15 @@
+.btn-game {
+  background-color: #0ca88e;
+  border-color: #0ca88e;
+}
+
+.table-scoreboard {
+  thead {
+    color: white !important;
+    background-color: #0ca88e !important;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #d1f2eb !important;
+  }
+}
