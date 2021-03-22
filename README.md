@@ -1,24 +1,11 @@
-# README
+# Chakli Ude
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Chakli Ude is a classical question answer game comprising of Yes/No questions and the player has to quickly answer the questions.
 
-Things you may want to cover:
+Currently, there is no timer but in the home page, you can easily find the time taken by you.
 
-* Ruby version
+In home page, you can find the leaderboard consisting of the player name, their score and the duration in which the player has completed the game.
 
-* System dependencies
+No Sign Up required. Just enter your name and hit "Start Game!!" button.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Check out the game at: https://chakliude.herokuapp.com/
