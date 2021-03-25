@@ -2,6 +2,7 @@ let questionListUrl = window.location.pathname + '.json';
 let questionList;
 let questionPointer = 0;
 let gameOver = false;
+let timerBar = 0;
 
 let userScore = 0;
 let userStrike = 0;
@@ -22,6 +23,7 @@ jQuery(function() {
 
   // user inputs are assessed and respective states are updated
   $('button').on('click', function(e) {
+    resetTimer();
 
     if (e.currentTarget.id === "ude" && questionList[questionPointer]['answer'] === true) {
       updateScore();
@@ -30,10 +32,26 @@ jQuery(function() {
     } else {
       updateStrike();
     }
-
-    changeQuestion();
   });
 });
+
+// responsible to generate timing slider
+function resetTimer() {
+  clearInterval(timerBar);
+
+    var timer = $('#timer')[0];
+    var timerWidth = 0;
+    timerBar = setInterval(frame, 30);
+
+    function frame() {
+      if (timerWidth >= 100) {
+        $('button').trigger('click');
+      } else {
+        timerWidth++;
+        timer.style.width = timerWidth + "%";
+      }
+    }
+}
 
 function getUserId() {
   return window.location.pathname.split("/")[2];
@@ -56,6 +74,7 @@ function changeQuestion() {
 function updateScore() {
   userScore += 5;
   $('#score-stat').empty().append(userScore);
+  changeQuestion();
 }
 
 function updateStrike() {
@@ -65,6 +84,7 @@ function updateStrike() {
   if (userStrike == 3) {
     finishGame();
   }
+  changeQuestion();
 }
 
 // The ScoreBoard will get saved for the same user and will be deactivated to prevent further activities

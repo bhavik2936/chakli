@@ -7,8 +7,14 @@
   font-family: monospace;
 }
 
-.timer {
-  font-size: 72px;
+#timer-bar {
+  background-color: green;
+}
+
+#timer {
+  width: 0%;
+  height: 15px;
+  background-color: red;
 }
 
 .question {
