@@ -12,13 +12,13 @@ class ScoreBoardsController < ApplicationController
 
     respond_to do |format|
       if @score_board.save
-        format.js
+        format.json
       else
-        format.js { render js: "questions", status: 400 }
+        format.json { render json: { error: "Bad Request", status: 400 }, status: 400 }
       end
     end
   end
-  
+
   def edit
 
   end

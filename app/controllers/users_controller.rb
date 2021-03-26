@@ -15,6 +15,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(id: params["id"])
+
+    respond_to do |format|
+      if @user.update(is_active: false)
+       format.js
+      else
+        format.js { render js: "users", status: 400 }
+      end
+    end
+  end
+
   private
 
   def user_params

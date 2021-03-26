@@ -2,24 +2,29 @@ let questionListUrl = window.location.pathname + '.json';
 let questionList;
 let questionPointer = 0;
 let gameOver = false;
+let timerBar = 0;
 
 let userScore = 0;
 let userStrike = 0;
 
+// on document ready, the current function will be get executed
 jQuery(function() {
+  // the list of questions will be fetched
   $.ajax({
     url: questionListUrl,
   }).done(function(response) {
 
     questionList = response;
     loadFirstQuestion();
-  }).fail(function(jqXHR, textstatus, errorThrown) {
+  }).fail(function(jqXHR, textStatus, errorThrown) {
 
     alert("Your request cannot be proceed at this time, Please try again later!");
   });
 
+  // user inputs are assessed and respective states are updated
   $('button').on('click', function(e) {
-    
+    resetTimer();
+
     if (e.currentTarget.id === "ude" && questionList[questionPointer]['answer'] === true) {
       updateScore();
     } else if (e.currentTarget.id === "na-ude" && questionList[questionPointer]['answer'] === false) {
@@ -27,10 +32,26 @@ jQuery(function() {
     } else {
       updateStrike();
     }
-
-    changeQuestion();
   });
 });
+
+// responsible to generate timing slider
+function resetTimer() {
+  clearInterval(timerBar);
+
+    var timer = $('#timer')[0];
+    var timerWidth = 0;
+    timerBar = setInterval(frame, 30);
+
+    function frame() {
+      if (timerWidth >= 100) {
+        $('#btn-mock').triggerHandler('click');
+      } else {
+        timerWidth++;
+        timer.style.width = timerWidth + "%";
+      }
+    }
+}
 
 function getUserId() {
   return window.location.pathname.split("/")[2];
@@ -53,6 +74,7 @@ function changeQuestion() {
 function updateScore() {
   userScore += 5;
   $('#score-stat').empty().append(userScore);
+  changeQuestion();
 }
 
 function updateStrike() {
@@ -62,10 +84,18 @@ function updateStrike() {
   if (userStrike == 3) {
     finishGame();
   }
+  changeQuestion();
 }
 
+// The ScoreBoard will get saved for the same user and will be deactivated to prevent further activities
 function finishGame() {
+  insertScoreBoard();
+}
+
+// The ScoreBoard will get saved for the same user
+function insertScoreBoard() {
   newScoreBoardUrl = "/users/" + getUserId() + "/score_boards";
+
   userScoreBoard = {
     score_board: {
       user_id: getUserId(),
@@ -79,13 +109,27 @@ function finishGame() {
     url: newScoreBoardUrl,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
     data: userScoreBoard
-  }).done(function(response) {
 
+  }).done(function(response) {
+    deactivateUser();
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    alert("Couldn't save score, Please try again later!");
+  });
+}
+
+// The User will get deactivated after its ScoreBoard been saved
+function deactivateUser(url) {
+  deactivateUserUrl = "/users/" + getUserId();
+
+  $.ajax({
+    type: "PATCH",
+    url: deactivateUserUrl,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+
+  }).done(function(response) {
     alert("Thanks for playing! Your Score: " + userScoreBoard.score_board.score);
     window.location.href = "/";
-  }).fail(function(jqXHR, textstatus, errorThrown) {
-
-    alert("Score cannot be saved at this moment!");
+  }).fail(function (jqXHR, textStatus, errorThrown) {
+    alert("User lock couldn't be completed!");
   });
-
 }
