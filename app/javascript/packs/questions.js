@@ -45,7 +45,7 @@ function resetTimer() {
 
     function frame() {
       if (timerWidth >= 100) {
-        $('button').trigger('click');
+        $('#btn-mock').triggerHandler('click');
       } else {
         timerWidth++;
         timer.style.width = timerWidth + "%";
