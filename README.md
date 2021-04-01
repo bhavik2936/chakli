@@ -30,6 +30,9 @@ $ yarn install --check-files
 
 # then perform the migration
 $ rails db:migrate
+
+# add pre-defined questions into the database from the seed file
+$ rails db:seed
 ```
 
 To start the rails server in the localhost
