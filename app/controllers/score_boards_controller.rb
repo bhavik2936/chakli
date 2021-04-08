@@ -30,7 +30,7 @@ class ScoreBoardsController < ApplicationController
   private
 
   def score_board_params
-    params.require(:score_board).permit(:score, :strike, :user_id)
+    params.require(:score_board).permit(:score, :strike, :time_taken, :user_id)
   end
 
 end

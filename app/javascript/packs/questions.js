@@ -3,6 +3,7 @@ let questionList;
 let questionPointer = 0;
 let gameOver = false;
 let timerBar = 0;
+let gameStartTime;
 
 let userScore = 0;
 let userStrike = 0;
@@ -19,6 +20,10 @@ jQuery(function() {
   }).fail(function(jqXHR, textStatus, errorThrown) {
 
     alert("Your request cannot be proceed at this time, Please try again later!");
+  });
+
+  $('button').one('click', function(e) {
+    gameStartTime = new Date();
   });
 
   // user inputs are assessed and respective states are updated
@@ -95,12 +100,14 @@ function finishGame() {
 // The ScoreBoard will get saved for the same user
 function insertScoreBoard() {
   newScoreBoardUrl = "/users/" + getUserId() + "/score_boards";
+  gameEndTime = new Date();
 
   userScoreBoard = {
     score_board: {
       user_id: getUserId(),
       score: $('#score-stat')[0].innerHTML,
       strike: $('#strike-stat')[0].innerHTML,
+      time_taken: (gameEndTime - gameStartTime) / 1000,
     }
   };
 
