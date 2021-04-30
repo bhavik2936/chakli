@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chakli</title>
+    <title>
+      <%= if content_for(:title) then yield(:title) + ' | ' end %>
+      Chakli Ude
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= yield_meta_tag(:description, 'A classic Chakli Ude game which we played since born. Defeat the gloabal scores in least time possible to be highest on the score board') %>">
+    <meta name="keywords" content="<%= yield_meta_tag(:keywords, 'rails, chakli ude, game, gujarati') %>">
+    <meta name="robots" content="<%= yield_meta_tag(:robots, 'NOINDEX, NOFOLLOW') %>">
+    <meta property="twitter:image:src" content="<%= ENV['DOMAIN'].strip + image_path("favicon.png") %>" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Chakli Ude Game" />
+    <meta property="twitter:description" content="A classic Chakli Ude game which we played since born. Defeat the gloabal scores in least time possible to be highest on the score board" />
+    <meta property="og:image" content="<%= ENV['DOMAIN'].strip + image_path("favicon.png") %>" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="260" />
+    <meta property="og:image:height" content="260" />
+    <meta property="og:url" content="<%= ENV['DOMAIN'].strip %>" />
+    <meta property="og:title" content="Chakli Ude Game" />
+    <meta property="og:description" content="A classic Chakli Ude game which we played since born. Defeat the gloabal scores in least time possible to be highest on the score board" />
+    <meta property="og:type" content="game" />
+    <meta property="og:locale" content="gu_IN" />
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>

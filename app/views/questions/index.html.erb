@@ -1,3 +1,6 @@
+<% title "#{@users.name}'s Game" %>
+<% meta_tag :description, "Hey #{@users.name}, Try hard to get on top of the score board by finishing the game in least time." %>
+
 <% unless @users.name.nil? %>
   <%= render 'layouts/user_header' %>
 <% end %>
