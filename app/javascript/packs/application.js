@@ -13,3 +13,20 @@ import "bootstrap"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// on document ready, the current function will be get executed
+jQuery(function() {
+  setNavigatorVibrate();
+});
+
+// initialize global NavigatorVibrate attributes
+function setNavigatorVibrate() {
+  window.gameVibration = {};
+  window.gameVibration.scoreVibration = 25;
+  window.gameVibration.strikeVibration = 50;
+  window.gameVibration.gameOverVibration = 700;
+
+  if (Boolean(window.navigator.vibrate) || Boolean(window.navigator.mozvibrate)) {
+    window.navigator.vibrate = window.navigator.vibrate || window.navigator.mozVibrate;
+  }
+}

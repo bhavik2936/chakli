@@ -77,12 +77,14 @@ function changeQuestion() {
 }
 
 function updateScore() {
+  vibrateDevice(window.gameVibration.scoreVibration);
   userScore += 5;
   $('#score-stat').empty().append(userScore);
   changeQuestion();
 }
 
 function updateStrike() {
+  vibrateDevice(window.gameVibration.strikeVibration);
   userStrike += 1;
   $('#strike-stat').empty().append(userStrike);
 
@@ -92,9 +94,16 @@ function updateStrike() {
   changeQuestion();
 }
 
+// Vibrates the device if it supports to do so
 // The ScoreBoard will get saved for the same user and will be deactivated to prevent further activities
 function finishGame() {
+  vibrateDevice(window.gameVibration.gameOverVibration);
   insertScoreBoard();
+}
+
+// Vibrates the device
+function vibrateDevice(vibrateAmount) {
+  window.navigator.vibrate(vibrateAmount);
 }
 
 // The ScoreBoard will get saved for the same user
