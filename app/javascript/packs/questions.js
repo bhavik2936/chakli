@@ -103,7 +103,7 @@ function finishGame() {
 
 // Vibrates the device
 function vibrateDevice(vibrateAmount) {
-  window.navigator.vibrate(vibrateAmount);
+  window.navigator.vibrate?.(vibrateAmount);
 }
 
 // The ScoreBoard will get saved for the same user

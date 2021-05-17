@@ -26,7 +26,5 @@ function setNavigatorVibrate() {
   window.gameVibration.strikeVibration = 50;
   window.gameVibration.gameOverVibration = 700;
 
-  if (Boolean(window.navigator.vibrate) || Boolean(window.navigator.mozvibrate)) {
-    window.navigator.vibrate = window.navigator.vibrate || window.navigator.mozVibrate;
-  }
+  window.navigator.vibrate ??= window.navigator.mozVibrate;
 }
